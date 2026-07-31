@@ -1,0 +1,24 @@
+{
+    "name": "com.thinkingdata.remoteconfig",
+    "displayName": "TDRemoteConfig",
+    "description": "ThinkingData Remote Config Unity SDK",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ThinkingDataAnalytics/tdremoteconfig-unity"
+    },
+    "version": "1.2.2",
+    "unity": "2018.3",
+    "license": "Apache V2",
+    "author": "ThinkingData",
+    "keywords": [
+        "unity3d",
+        "unity3d-package",
+        "remote-config",
+        "thinking",
+        "thinkingdata"
+    ],
+    "category": "Analytics",
+    "dependencies": {
+        "com.thinkingdata.analytics": "https://github.com/ThinkingDataAnalytics/unity-sdk.git?path=/Assets#v3.5.0"
+    }
+}

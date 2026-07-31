@@ -1,0 +1,6 @@
+framework module TDRemoteConfig {
+  umbrella header "TDRemoteConfig.h"
+  export *
+
+  module * { export * }
+}
