@@ -6,7 +6,7 @@
         "type": "git",
         "url": "https://github.com/ThinkingDataAnalytics/tdremoteconfig-unity"
     },
-    "version": "1.2.2",
+    "version": "1.2.3",
     "unity": "2018.3",
     "license": "Apache V2",
     "author": "ThinkingData",
@@ -17,8 +17,5 @@
         "thinking",
         "thinkingdata"
     ],
-    "category": "Analytics",
-    "dependencies": {
-        "com.thinkingdata.analytics": "https://github.com/ThinkingDataAnalytics/unity-sdk.git?path=/Assets#v3.5.0"
-    }
+    "category": "Analytics"
 }

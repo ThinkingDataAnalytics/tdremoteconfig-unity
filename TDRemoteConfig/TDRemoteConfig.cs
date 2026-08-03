@@ -56,7 +56,7 @@ namespace ThinkingData.RemoteConfig {
         }
 
 		public static string GetSDKVersion() {
-			return "1.2.2";
+			return "1.2.3";
 		}
 
     }
