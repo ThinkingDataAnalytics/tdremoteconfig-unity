@@ -19,6 +19,12 @@
 #import "TDObject.h"
 #endif
 
+#if __has_include(<TDRemoteConfig/TDRCFetchTask.h>)
+#import <TDRemoteConfig/TDRCFetchTask.h>
+#else
+#import "TDRCFetchTask.h"
+#endif
+
 #if __has_include(<TDRemoteConfig/TDRemoteConfigSettingsPrivate.h>)
 #import <TDRemoteConfig/TDRemoteConfigSettingsPrivate.h>
 #else
@@ -48,17 +54,27 @@ extern NSString *kTDRemoteConfigStrategyStatusMap;
 // MARK: -
 
 + (TDObject *)getData;
-+ (void)fetch;
++ (TDRCFetchTask *)fetch;
 + (void)setCustomFetchParams:(NSDictionary *)params;
 + (void)removeCustomFetchParam:(NSString *)key;
+/// 设置自定义分桶ID，与当前内存中的值合并后持久化
++ (void)setCustomBucketId:(NSDictionary<NSString *, NSString *> *)bucketId;
 + (void)setDefaultValues:(NSDictionary *)defaultValue;
 + (void)setDefaultValuesWithJsonFile:(NSString *)filePath;
 + (void)clearDefaultValues;
 
 + (TDObject *)getDataWithAppId:(nullable NSString *)appId;
-+ (void)fetchWithAppId:(nullable NSString *)appId;
+/// 获取指定模版的远程配置
++ (TDObject *)getDataWithAppId:(nullable NSString *)appId templateCode:(nullable NSString *)code;
++ (TDRCFetchTask *)fetchWithAppId:(nullable NSString *)appId;
+/// 拉取指定模版的远程配置
++ (TDRCFetchTask *)fetchWithAppId:(nullable NSString *)appId templateCode:(nullable NSString *)code;
 + (void)setCustomFetchParams:(NSDictionary *)params appId:(nullable NSString *)appId;
+/// 设置指定模版的自定义请求参数，与当前内存中的值合并后持久化
++ (void)setCustomFetchParams:(NSDictionary *)params appId:(nullable NSString *)appId templateCode:(nullable NSString *)code;
 + (void)removeCustomFetchParam:(NSString *)key appId:(nullable NSString *)appId;
+/// 设置自定义分桶ID，与当前内存中的值合并后持久化
++ (void)setCustomBucketId:(NSDictionary<NSString *, NSString *> *)bucketId appId:(nullable NSString *)appId templateCode:(nullable NSString *)code;
 + (void)setDefaultValues:(NSDictionary *)defaultValue appId:(nullable NSString *)appId;
 + (void)setDefaultValuesWithJsonFile:(NSString *)filePath appId:(nullable NSString *)appId;
 + (void)clearDefaultValuesWithAppId:(nullable NSString *)appId;

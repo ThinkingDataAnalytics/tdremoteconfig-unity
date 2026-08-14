@@ -7,6 +7,12 @@
 
 #import <Foundation/Foundation.h>
 
+#if __has_include(<TDRemoteConfig/TDRCFetchTask.h>)
+#import <TDRemoteConfig/TDRCFetchTask.h>
+#else
+#import "TDRCFetchTask.h"
+#endif
+
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_OPTIONS(NSUInteger, TDRemoteConfigMode) {
@@ -19,6 +25,10 @@ typedef NS_OPTIONS(NSUInteger, TDRemoteConfigMode) {
 @property (nonatomic, copy) NSString *appId;
 @property (nonatomic, copy) NSString *serverUrl;
 @property (nonatomic, strong) NSDictionary<NSString *, NSObject *> *fetchParams;
+/// 自定义分桶ID，用于指定分桶规则
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *> *customBucketId;
+/// fetch 回调任务
+@property (nonatomic, strong, nullable) TDRCFetchTask *fetchTask;
 
 @end
 
