@@ -10,7 +10,7 @@ Requires **TDAnalytics 3.5.0** (`com.thinkingdata.analytics`). Unity does not su
 {
   "dependencies": {
     "com.thinkingdata.analytics": "https://github.com/ThinkingDataAnalytics/unity-sdk.git#v3.5.0",
-    "com.thinkingdata.remoteconfig": "https://github.com/ThinkingDataAnalytics/tdremoteconfig-unity.git?path=/Assets#v1.2.4"
+    "com.thinkingdata.remoteconfig": "https://github.com/ThinkingDataAnalytics/tdremoteconfig-unity.git?path=/Assets#v1.2.5"
   }
 }
 ```

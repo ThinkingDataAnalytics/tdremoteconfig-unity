@@ -99,9 +99,32 @@ const char *rc_get_all_data(const char *configId,const char *templateId){
 @implementation TDRemoteConfigReceiver
 
 + (void)fun:(NSNotification *)notification {
-    NSDictionary *info = notification.userInfo[kTDRemoteConfigStrategyStatusMap];
-    NSData *data = [NSJSONSerialization dataWithJSONObject:info options:kNilOptions error:nil];
-    NSString *jsonString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    if (resultHandler == NULL) {
+        return;
+    }
+    // Fetch already succeeded. Deliver "{}" when the status map cannot be serialized
+    // so OnFetchSuccess still runs. dataWithJSONObject: throws on nil, NSNull, NSDate, NaN.
+    NSString *jsonString = nil;
+    NSString *failureReason = nil;
+    id info = notification.userInfo[kTDRemoteConfigStrategyStatusMap];
+    if ([NSJSONSerialization isValidJSONObject:info]) {
+        @try {
+            NSData *data = [NSJSONSerialization dataWithJSONObject:info options:kNilOptions error:nil];
+            if (data != nil) {
+                jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            }
+        } @catch (NSException *exception) {
+            failureReason = exception.reason;
+        }
+    }
+    if (jsonString == nil) {
+        if (failureReason != nil) {
+            NSLog(@"[TDRemoteConfig] strategy status is not valid JSON (%@), delivering {}", failureReason);
+        } else {
+            NSLog(@"[TDRemoteConfig] strategy status is not valid JSON, delivering {}");
+        }
+        jsonString = @"{}";
+    }
     resultHandler(rc_strdup([jsonString UTF8String]));
 }
 

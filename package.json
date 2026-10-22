@@ -6,7 +6,7 @@
         "type": "git",
         "url": "https://github.com/ThinkingDataAnalytics/tdremoteconfig-unity"
     },
-    "version": "1.2.4",
+    "version": "1.2.5",
     "unity": "2018.3",
     "license": "Apache V2",
     "author": "ThinkingData",
